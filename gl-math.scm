@@ -1,8 +1,14 @@
 (module gl-math *
 
-(import chicken scheme foreign srfi-1 extras)
-(import-for-syntax matchable data-structures)
-(use lolevel srfi-4)
+(cond-expand
+ (chicken-4
+  (import chicken scheme foreign srfi-1 extras)
+  (import-for-syntax matchable data-structures)
+  (use lolevel srfi-4))
+ (chicken-5
+  (import (chicken base) scheme (chicken foreign) (srfi 1) (chicken format) (chicken locative))
+  (import-for-syntax matchable (srfi 1))
+  (import (chicken memory) (srfi 4))))
 
 (foreign-declare "#include <hypermath.h>")
 
